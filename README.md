@@ -3,7 +3,7 @@
     To Your to tell a story through data visualizations.
     
 Focus on providing users an interactive means to explore data themselves.
-Prepare a 15-20 minute presentation that lays out your theme, coding approach, data
+Prepare a presentation that lays out your theme, coding approach, data
 munging techniques, and final visualization.
 You may choose a project of any theme, but we encourage you to think broadly.
 You will have ample time in class to work with your group, but expect to put in hours
