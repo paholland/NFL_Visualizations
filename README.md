@@ -1,6 +1,6 @@
 ### Project_Visualizations (Team Project)
 
-    To Your to tell a story through data visualizations.
+    To to tell a story through data visualizations.
     
 Focus on providing users an interactive means to explore data themselves.
 Prepare a presentation that lays out your theme, coding approach, data
