@@ -124,7 +124,7 @@ def draft_endpoint():
 # salary table data
 #######################################################
 
-@app.route("/gerData_salary_2019")
+@app.route("/getData_salary_2019")
 def salary_endpoint():
 
     conn = sqlite3.connect('NFL_db.sqlite')
@@ -164,7 +164,7 @@ def visualization3():
     return render_template('visualization3.html')
 
 @app.route("/visualization4")
-def visualization3():
+def visualization4():
 
     return render_template('visualization4.html')
 
