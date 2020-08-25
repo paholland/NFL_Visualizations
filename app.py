@@ -17,9 +17,9 @@ engine = create_engine("sqlite:///NFL_db.sqlite")
 Base = automap_base()
 Base.prepare(engine, reflect = True)
 
-Passer = Base.classes.passer
-Draft = Base.classes.draft
-Salary = Base.classes.salary_2019
+# Passer = Base.classes.passer
+# Draft = Base.classes.draft
+# Salary = Base.classes.salary_2019
 
 # session from Python to db
 session = Session(engine)
@@ -47,33 +47,33 @@ def api_call():
 #  'passOutcomes', 'passDirection', 'passDepth', 'passLength', 'passAtt',
 #  'passComp', 'passTd   
 # 
-@app.route ("/getData_passer")
-def passer_endpoint():
+# @app.route ("/getData_passer")
+# def passer_endpoint():
 
-    conn = sqlite3.connect('NFL_db.sqlite')
-    c = conn.cursor()
-    results = c.execute("SELECT * FROM passer")
+#     conn = sqlite3.connect('NFL_db.sqlite')
+#     c = conn.cursor()
+#     results = c.execute("SELECT * FROM passer")
 
-    passer_data = []
-    for r in results:
-        passer_dict = {}
+#     passer_data = []
+#     for r in results:
+#         passer_dict = {}
 
-        passer_dict["passId"] = r[1]
-        passer_dict["playId"] = r[2]
-        passer_dict["teamId"] = r[3]
-        passer_dict["playerId"] = r[4]
-        passer_dict["passPosition"] = r[5]
-        passer_dict["passOutcomes"] = r[6]
-        passer_dict["passDirection"] = r[7]
-        passer_dict["passDepth"] = r[8]
-        passer_dict["passLength"] = r[9]
-        passer_dict["passAtt"] = r[10]
-        passer_dict["passComp"] = r[11]
-        passer_dict["passTd"] = r[12]
+#         passer_dict["passId"] = r[1]
+#         passer_dict["playId"] = r[2]
+#         passer_dict["teamId"] = r[3]
+#         passer_dict["playerId"] = r[4]
+#         passer_dict["passPosition"] = r[5]
+#         passer_dict["passOutcomes"] = r[6]
+#         passer_dict["passDirection"] = r[7]
+#         passer_dict["passDepth"] = r[8]
+#         passer_dict["passLength"] = r[9]
+#         passer_dict["passAtt"] = r[10]
+#         passer_dict["passComp"] = r[11]
+#         passer_dict["passTd"] = r[12]
 
-        passer_data.append(passer_dict)
+#         passer_data.append(passer_dict)
 
-    return jsonify(passer_data)
+#     return jsonify(passer_data)
 
 
 ################################################# 
@@ -147,22 +147,25 @@ def salary_endpoint():
 ###########################################################
 # visualizations
 ###########################################################
+# Katie
 
 @app.route("/visualization1")
 def visualization1():
 
     return render_template('visualization1.html')
     
+# Michelle  
 @app.route("/visualization2")
 def visualization2():
 
     return render_template('visualization2.html')
 
+# Emmanuel
 @app.route("/visualization3")
 def visualization3():
 
     return render_template('visualization3.html')
-
+# Polina
 @app.route("/visualization4")
 def visualization4():
 
