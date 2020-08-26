@@ -98,22 +98,22 @@ def draft_endpoint():
     for r in results:
         draft_dict = {}
 
-        draft_dict["playerId"] = r[0]
-        draft_dict["draft"] = r[1]
-        draft_dict["round"] = r[2]
-        draft_dict["pick"] = r[3]
-        draft_dict["draftTradeValue"] = r[4]
-        draft_dict["draftTeam"] = r[5]
-        draft_dict["position"] = r[6]
-        draft_dict["teamId"] = r[7]
-        draft_dict["nameFull"] = r[10]
-        draft_dict["college"] = r[11]
-        draft_dict["heightInches"] = r[12]
-        draft_dict["weight"] = r[13]
-        draft_dict["homeCity"] = r[16]
-        draft_dict["homeState"] = r[17]
-        draft_dict["Latitude"] = r[20]
-        draft_dict["Longitude"] = r[21]
+        draft_dict["playerId"] = r[1]
+        draft_dict["draft"] = r[2]
+        draft_dict["round"] = r[3]
+        draft_dict["pick"] = r[4]
+        draft_dict["draftTradeValue"] = r[5]
+        draft_dict["draftTeam"] = r[6]
+        draft_dict["position"] = r[7]
+        draft_dict["teamId"] = r[8]
+        draft_dict["nameFull"] = r[11]
+        draft_dict["college"] = r[12]
+        draft_dict["heightInches"] = r[13]
+        draft_dict["weight"] = r[14]
+        draft_dict["homeCity"] = r[17]
+        draft_dict["homeState"] = r[18]
+        draft_dict["Latitude"] = r[21]
+        draft_dict["Longitude"] = r[22]
 
         draft_data.append(draft_dict)
 
@@ -135,11 +135,11 @@ def salary_endpoint():
     for r in results:
         salary_dict = {}
 
-        salary_dict["salaryRk"] = r[0]
-        salary_dict["position"] = r[1]
-        salary_dict["team"] = r[2]
-        salary_dict["salary"] = r[3]
-        salary_dict["player_name"] = r[4]
+        salary_dict["salaryRk"] = r[1]
+        salary_dict["position"] = r[2]
+        salary_dict["team"] = r[3]
+        salary_dict["salary"] = r[4]
+        salary_dict["player_name"] = r[5]
         salary_data.append(salary_dict)
     return jsonify(salary_data)
 
