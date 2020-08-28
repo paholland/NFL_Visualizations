@@ -92,6 +92,15 @@ d3.json('/getData_draft').then(data => {
     }
   })
 
+// see if we can round that
+  // console.log(d3.round((mean(QBh))
+  // avgQBh = d3.round((mean(QBh)
+
+
+
+// end or see if we can round that
+
+
   console.log(d3.mean(QBh))
   avgQBh = d3.mean(QBh)
 
