@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333; 
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+.subnav .subnavbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color:darkgray;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color:gainsboro;
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+</style>
+
+</head>
+<body>
+
+  <!-- NAV BAR -->
+<div class="navbar">
+  <a href="/">Home</a>
+  <div class="subnav">
+    <button class="subnavbtn">About <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="/">This project is for creating visualizations including a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.) Update here after a final plan......</a>
+  
+
+
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn"> Resources <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#bring">Data1_Data titles here</a>
+      <a href="data2">Data2</a>
+      <a href="http://www.nflsavant.com/about.php">Data3</a>
+      <a href="#express">Data4</a>
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn">Visualizations <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#link1">Name/type of our visual </a>
+      <a href="#link2">Link 2</a>
+      <a href="link">Link 3</a>
+      <!-- use route here not use filename.html file -->
+      <a href="test"> Players Physical Attributes by Position</a>
+ 
+    </div>
+  </div>
+  <!-- put a link to our github project here -->
+  <!-- to open in a new tab use _blank -->
+  <a href="https://github.com/paholland/Project_Visualizations" target="_blank">Contact Us</a>
+</div>
+
+<div style="padding:0 16px">
+
+  <!-- --------------------------center this title -->
+  <br>
+
+  <br>
+  
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+<!-- Our CSS -->
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+
+
+  
+<!-- to include frappe in the html or use yarn add frappe-gantt -->
+
+<script src="https://unpkg.com/frappe-charts@latest"></script>
+
+  <div id="chart"></div>
+  <div id="chart2"></div>
+  <div id="chart3"></div>
+
+  <footer>
+    <br>
+
+    <br>
+    <div class="footer">&copy; All Rights Reserved: 2020 </div>
+    </footer>
+
+<!-- see if need these -->
+
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<!-- D3 JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+<!-- Our JavaScript -->
+<!-- <script type="text/javascript" src="static/js/config.js"></script> -->
+
+<!-- <script src="{{ url_for('static', filename='logic4.js') }}"></script> -->
+<script type="text/javascript" src="../static/logic4.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- d3 version 5 -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<!-- version4 d3 -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+<!-- <script type="text/javascript" src="../static/js/x.js"></script>
+<script type="text/javascript" src="../static/js/x.js"></script> -->
+<!-- 
+<script src="{{ url_for('static', filename='logic4.js') }}"></script> -->
+<script type="text/javascript" src="../static/logic4.js"></script> 
+<!-- <script src="logic4.js"></script> -->
+
+
+
+</body>
+</html>
