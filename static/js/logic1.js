@@ -1,81 +1,76 @@
-// var myMap = L.map("map", {
-//     center: [38.563, -94.878],
-//     zoom: 5
-// });
+// Define SVG area dimensions
+var svgWidth = 800;
+var svgHeight = 660;
 
-// L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-//   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-//   tileSize: 512,
-//   maxZoom: 18,
-//   zoomOffset: -1,
-//   id: "mapbox/streets-v11",
-//   accessToken: API_KEY
-// }).addTo(myMap);
+// Define the chart's margins as an object
+var chartMargin = {
+    top: 30,
+    right: 30,
+    bottom: 30,
+    left: 40
+};
 
-// d3.json('getData_draft', function(playerData) {
-//     d3.select("body")
-//     .selectAll("p")
-//     .data(playerData)
-//     .enter()
-//     .append("p")
-//     .text(function(d) {
-//         return d.homeState
-//     })
+// Define dimensions of the chart area
+var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 
-// });
+var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
+
+// Select body, append SVG area to it, and set the dimensions
+var svg = d3.select("body")
+    .append("svg")
+    .attr("height", svgHeight)
+    .attr("width", svgWidth);
+
+// Append a group to the SVG area and shift ('translate') it to the right and to the bottom
+var chartGroup = svg.append("g")
+    .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+
+// Load data from csv
+d3.csv("../static/data/playerState.csv").then(function(playerData) {
+    console.log(playerData)
+
+// Cast num_player value to a number for each state
+playerData.forEach(function(d) {
+    d.num_players = +d.num_players;
+});
+
+// Configure a band scale for the horizontal axis
+var xBandScale = d3.scaleBand()
+    .domain(playerData.map(d => d.state))
+    .range([0, chartWidth])
+    .padding(0.1);
+
+// Create a linear scale for vertical axis
+var yLinearScale = d3.scaleLinear()
+    .domain([0, d3.max(playerData, d => d.num_players)])
+    .range([chartHeight, 0]);
+
+// Create two new functions passing our scales in as arguments creating chart's axes
+var bottomAxis = d3.axisBottom(xBandScale);
+var leftAxis = d3.axisLeft(yLinearScale).ticks(10);
+
+// Append two SVG group elements
+
+chartGroup.append("g")
+.call(leftAxis);
+
+chartGroup.append("g")
+.attr("transform", `translate(0, ${chartHeight})`)
+.call(bottomAxis);
+
+// Create one SVG rectangle per piece of playerData
+
+chartGroup.selectAll(".bar")
+    .data(playerData)
+    .enter()
+    .append("rect")
+    .attr("class", "bar")
+    .attr("x", d => xBandScale(d.state))
+    .attr("y", d => yLinearScale(d.num_players))
+    .attr("width", xBandScale.bandwidth())
+    .attr("height", d => chartHeight - yLinearScale(d.num_players));
 
 
-// var playerArray = [];
-
-// for (var i = 0; i < playerData.length; i++){
-//     var player = playerData[i].nameFull;
-//     if (player) {
-//         playerArray.push({ player: playerData[i].nameFull, position: playerData[i].position, homestate: playerData[i].homeState, latlng: (playerData[i].Latitude, playerData[i].Longitude) });
-
-//     }
-
-// L.circle(playerArray[i].latlng, {
-//     fillOpacity: 0.75,
-//     color: "white",
-//     fillColor: "red",
-//     radius: 10
-// }).addTo(myMap)
-    
-// };
-
-// //draft_dict["playerId"] = r[1]
-// draft_dict["draft"] = r[2]
-// draft_dict["round"] = r[3]
-// draft_dict["pick"] = r[4]
-// draft_dict["draftTradeValue"] = r[5]
-// draft_dict["draftTeam"] = r[6]
-// draft_dict["position"] = r[7]
-// draft_dict["teamId"] = r[8]
-// draft_dict["nameFull"] = r[11]
-// draft_dict["college"] = r[12]
-// draft_dict["heightInches"] = r[13]
-// draft_dict["weight"] = r[14]
-// draft_dict["homeCity"] = r[17]
-// draft_dict["homeState"] = r[18]
-// draft_dict["Latitude"] = r[21]
-// draft_dict["Longitude"] = r[22]
-
-// Loop through data
-// playerData.forEach(function(data) {
-//     data.fullName = +data.fullName
-//     data.homeState = +data.homeState
-//     data.Latitude = +data.Latitude
-//     data.Longitude = +data.Longitude
-
-
-
-// console.log(total_state)
-
-//d3.json('getData_draft', function(playerData)
-
-d3.json('getData_draft', function(playerData) {
-    //console.log(playerData)
-    playerData.forEach(function(data) {
-        playerData.homeState = +homeState
-    })
-})
+}).catch(function(error) {
+    console.log(error);
+});
