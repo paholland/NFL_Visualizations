@@ -1,8 +1,8 @@
    
 // Read Into NFL Data 
-var tableData = d3.json('/getData_draft', function(data) {
+    d3.json('/getData_draft').then(function(data) {
     tableDisplay(data);
-  });
+
   
   
   // function to display NFL Data
@@ -25,8 +25,8 @@ var tableData = d3.json('/getData_draft', function(data) {
   };
     
   // initial display of all NFL Data
-  console.log(tableData);
-  tableDisplay(tableData);
+  console.log(data);
+  // tableDisplay(tableData);
   
   // 'Filter Table' button
   var button = d3.select("#filter-btn");
@@ -39,7 +39,7 @@ var tableData = d3.json('/getData_draft', function(data) {
     d3.event.preventDefault();
     deleteTbody();
     
-    var filteredData = tableData;
+    var filteredData = data;
     var inputId = document.getElementsByClassName("form-control");
   
     console.log(inputId);
@@ -52,14 +52,18 @@ var tableData = d3.json('/getData_draft', function(data) {
       
       // treat empty or space-only fields as a search for ALL for that field
       if (field.trim() !== "") {
-      var filteredData = filteredData.filter(nflDatas =>
+      var filteredData = filteredData.filter(nflDatas => {
         //var filteredData = Object.entries(filteredData).filter(nflDatas =>
           // match as case insensitive
-         nflDatas[idName].toUpperCase().trim() ===
-         field.toUpperCase().trim());
-      };
+        if (nflDatas[idName] !== null ) {
+         console.log (nflDatas[idName])
+         console.log (field)
+         return nflDatas[idName].toUpperCase().trim() === field.toUpperCase().trim(); 
+        }
+        else {false} 
+      });
     };
-   
+  }
     // display message if no records found
     if (filteredData.length == 0) {
       d3.select("tbody")
@@ -74,7 +78,7 @@ var tableData = d3.json('/getData_draft', function(data) {
     tableDisplay(filteredData);
   });
   
-  
+}); 
   
   
   
